@@ -3,6 +3,8 @@
 ## 1. Resumen Ejecutivo
 Durante el análisis de tráfico **HTTPS cifrado**, se identificó la descarga de un archivo malicioso oculto mediante **TLS**. Gracias a un archivo de registro de claves TLS, la captura **PCAP** fue descifrada con éxito en **Wireshark**, revelando la transacción HTTP que descargaba un fichero llamado **`invest_20.dll`**. Este binario representa una amenaza real, ya que su **hash SHA-256** coincide con un archivo previamente analizado en **VirusTotal** y detectado por múltiples motores antivirus. El incidente evidencia la necesidad de monitorizar y analizar tráfico cifrado, así como de contar con entornos seguros para examinar posibles malware.
 
+![Captura Wireshark](images/imagen1.png)
+
 ## 2. Contexto del Incidente
 La evidencia proviene de la captura **`decrypting_HTTPS_TLS_traffic.pcap`**, obtenida como parte de un laboratorio de seguridad. Debido a que la comunicación estaba cifrada mediante TLS, las transferencias HTTP originales quedaban ocultas. Para permitir su examen, se utilizó **`KeysLogFile.txt`**, que contiene las claves de sesión TLS necesarias. Tras configurar correctamente estas claves en **Wireshark**, el tráfico se descifró y se pudo identificar una solicitud HTTP que descargaba el archivo malicioso. El archivo fue extraído desde esa solicitud para su análisis estático.
 
